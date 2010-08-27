@@ -29,7 +29,6 @@ let bash_is_sh=1
 set cinoptions=:0,(s,u0,U1,g0,t0
 
 set modelines=5
-set tags=tags;/
 
 set laststatus=2
 
@@ -64,8 +63,8 @@ set wildmenu
 set ruler
 set visualbell
 
-set ts=4
-set sw=4
+set ts=2
+set sw=2
 
 "fixdel
 
@@ -159,5 +158,15 @@ endif
 
 let g:yankring_replace_n_pkey = '<leader>['
 let g:yankring_replace_n_nkey = '<leader>]'
+
+"rebuild php tags after editing
+nmap <silent> <F4>
+	\ :!ctags-ex -f ./tags
+	\ --langmap="php:+.inc"
+	\ -h ".php.inc" -R --totals=yes
+	\ --tag-relative=yes --PHP-kinds=+cf-v .<CR>
+set tags=./tags,tags;/
+
+
 
 set shell=/bin/bash
