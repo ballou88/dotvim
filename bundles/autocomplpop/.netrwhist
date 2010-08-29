@@ -1,5 +1,4 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =3
-let g:netrw_dirhist_1='/home/mike/rails/sample_app'
-let g:netrw_dirhist_2='/etc/apache2/sites-available'
-let g:netrw_dirhist_3='/webapps/prod_queue'
+let g:netrw_dirhist_cnt =2
+let g:netrw_dirhist_1='/Users/ballou88/rails/sample_app'
+let g:netrw_dirhist_2='/Users/ballou88/ruby'

@@ -1,4 +1,38 @@
+" -----------------------------------------------------------------------------  
+" |                            VIM Settings                                   |
+" |                   (see gvimrc for gui vim settings)                       |
+" |                                                                           |
+" | Some highlights:                                                          |
+" |   jj = <esc>  Very useful for keeping your hands on the home row          |
+" |   ,n = toggle NERDTree off and on                                         |
+" |                                                                           |
+" |   ,f = fuzzy find all files                                               |
+" |   ,b = fuzzy find in all buffers                                          |
+" |   ,p = go to previous file                                                |
+" |                                                                           |
+" |   hh = inserts '=>'                                                       |
+" |   aa = inserts '@'                                                        |
+" |                                                                           |
+" |   ,h = new horizontal window                                              |
+" |   ,v = new vertical window                                                |
+" |                                                                           |
+" |   ,i = toggle invisibles                                                  |
+" |                                                                           |
+" |   enter and shift-enter = adds a new line after/before the current line   |
+" |                                                                           |
+" |   :call Tabstyle_tabs = set tab to real tabs                              |
+" |   :call Tabstyle_spaces = set tab to 2 spaces                             |
+" |                                                                           |
+" | Put machine/user specific settings in ~/.vimrc.local                      |
+" -----------------------------------------------------------------------------  
+
 set nocompatible
+
+" Hard to type *****************************************************************
+imap uu _
+imap hh =>
+imap aa @
+imap jj <Esc> " Professor VIM says '87% of users prefer jj over esc', jj abrams disagrees
 
 runtime! autoload/pathogen.vim
 if exists('g:loaded_pathogen')
@@ -16,6 +50,14 @@ set completeopt=menuone,preview
 set ofu=syntaxcomplete#Complete
 let g:rubycomplete_buffer_loading = 0
 let g:rubycomplete_classes_in_global = 1
+autocmd FileType html :set omnifunc=htmlcomplete#CompleteTags
+autocmd FileType python set omnifunc=pythoncomplete#Complete
+autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
+autocmd FileType css set omnifunc=csscomplete#CompleteCSS
+autocmd FileType xml set omnifunc=xmlcomplete#CompleteTags
+autocmd FileType php set omnifunc=phpcomplete#CompletePHP
+autocmd FileType c set omnifunc=ccomplete#Complete
+autocmd FileType ruby,eruby set omnifunc=rubycomplete#Complete 
 " completing Rails hangs a lot
 "let g:rubycomplete_rails = 1
 
@@ -29,6 +71,7 @@ let bash_is_sh=1
 set cinoptions=:0,(s,u0,U1,g0,t0
 
 set modelines=5
+set tags=tags;/
 
 set laststatus=2
 
@@ -63,8 +106,8 @@ set wildmenu
 set ruler
 set visualbell
 
-set ts=2
-set sw=2
+set ts=4
+set sw=4
 
 "fixdel
 
@@ -158,15 +201,5 @@ endif
 
 let g:yankring_replace_n_pkey = '<leader>['
 let g:yankring_replace_n_nkey = '<leader>]'
-
-"rebuild php tags after editing
-nmap <silent> <F4>
-	\ :!ctags-ex -f ./tags
-	\ --langmap="php:+.inc"
-	\ -h ".php.inc" -R --totals=yes
-	\ --tag-relative=yes --PHP-kinds=+cf-v .<CR>
-set tags=./tags,tags;/
-
-
 
 set shell=/bin/bash
